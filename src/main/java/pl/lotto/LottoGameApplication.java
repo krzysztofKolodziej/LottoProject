@@ -1,56 +1,47 @@
 package pl.lotto;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
 public class LottoGameApplication {
 
     public static void main(String[] args) throws IOException {
-
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-        ArrayList random = lottoNumberGenerator.generateRandomNumber();
+        ArrayList<Integer> random = lottoNumberGenerator.generateRandomNumber();
+        NumberReceiver numberReceiver = new NumberReceiver();
+        ArrayList<Integer> numbersFromUser = numberReceiver.retrieveNumbersFromUser();
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        // walidacja czy są duplikaty od uzytkownika, czy liczby są z zakresu 1-99
 
-        System.out.println("Proszę podać 6 liczb od 1 do 99");
+        int hitCounter = calculateHitResults(random, numbersFromUser);
+        System.out.println("Wylosowane liczby: ");
 
-        ArrayList<Integer> listaUzytkownik =new ArrayList<Integer>();
-
-        for (int i=0; i<6; i++){
-            int s = Integer.parseInt(reader.readLine());
-            if(s<=0 || s>99){
-                System.out.println("Liczba musi znajdować się w przedziale od 1 do 99");
-                break;
-            }
-            listaUzytkownik.add(s);
+        for (int i = 0; i < 6; i++) {
+            System.out.println(random.get(i));
         }
 
-        int iloscTrafien =0;
+        System.out.println("Ilość trafień " + hitCounter);
 
-        for (Integer s: listaUzytkownik
-             ) {
-            for (int i=0; i<6; i++){
-                if (random.get(i) ==s){
-                    iloscTrafien++;
+        if (hitCounter >= 3) {
+            System.out.println("Wygrałeś");
+        } else System.out.println("Przegrałeś");
+    }
+
+    private static int calculateHitResults(ArrayList<Integer> random, ArrayList<Integer> numbersFromUser) {
+        int hitCounter = 0;
+
+        for (Integer numberFromUser : numbersFromUser
+        ) {
+            for (int i = 0; i < 6; i++) {
+                if (random.get(i) == numberFromUser) {
+                    hitCounter++;
                 }
 
             }
         }
-        System.out.println("Wylosowane liczby: ");
-
-       for (int i=0; i<6; i++){
-           System.out.println(random.get(i));
-       }
-
-        System.out.println("Ilość trafień "+iloscTrafien);
-
-        if (iloscTrafien >=3){
-            System.out.println("Wygrałeś");
-        }
-        else System.out.println("Przegrałeś");
+        return hitCounter;
     }
+
 
 }

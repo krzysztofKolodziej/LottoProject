@@ -9,15 +9,19 @@ public class NumberReceiver {
 
     public ArrayList<Integer> retrieveNumbersFromUser() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Proszę podać 6 liczb od 1 do 99");
+        System.out.println("Please enter 6 numbers from 1 to 99");
         ArrayList<Integer> numbersFromUser = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            int s = Integer.parseInt(reader.readLine());
-            if (s <= 0 || s > 99) {
-                System.out.println("Liczba musi znajdować się w przedziale od 1 do 99");
+            int numberOfUser = Integer.parseInt(reader.readLine());
+            if (numberOfUser <= 0 || numberOfUser > 99) {
+                System.out.println("The number must be within the range of 1 to 99");
                 break;
             }
-            numbersFromUser.add(s);
+            if (numbersFromUser.contains(numberOfUser)) {
+                System.out.println("Numbers must be unique. Please try again");
+                break;
+            }
+            numbersFromUser.add(numberOfUser);
         }
         return numbersFromUser;
     }

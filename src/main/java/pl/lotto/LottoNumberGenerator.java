@@ -1,5 +1,6 @@
 package pl.lotto;
 
+
 import java.util.ArrayList;
 
 public class LottoNumberGenerator {
@@ -8,16 +9,25 @@ public class LottoNumberGenerator {
         int min = 1;
         int max = 99;
 
-        ArrayList<Integer> listaRandom = new ArrayList<Integer>();
+        ArrayList<Integer> listRandom = new ArrayList<>();
 
-        while (listaRandom.size() < 6) {
+        while (listRandom.size() < 6) {
             int random = (int) Math.floor(Math.random() * (max - min + 1) + min);
-            if (listaRandom.contains(random)) {
+            if (listRandom.contains(random)) {
                 continue;
             }
-            listaRandom.add(random);
+            listRandom.add(random);
         }
-        return listaRandom;
+        return listRandom;
+    }
+
+    public void drawnNumbers() {
+
+        System.out.println("Drawn numbers: ");
+
+        for (int i = 0; i < 6; i++) {
+            System.out.println(generateRandomNumber().get(i));
+        }
     }
 
 }

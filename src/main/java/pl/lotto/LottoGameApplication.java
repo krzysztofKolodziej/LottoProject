@@ -1,20 +1,26 @@
 package pl.lotto;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class LottoGameApplication {
 
     public static void main(String[] args) throws IOException {
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-        ArrayList<Integer> random = lottoNumberGenerator.generateRandomNumber();
         NumberReceiver numberReceiver = new NumberReceiver();
-        ArrayList<Integer> numbersFromUser = numberReceiver.retrieveNumbersFromUser();
+        List<Integer> numbersFromUser = numberReceiver.retrieveNumbersFromUser();
+        NumberValidator numberValidator = new NumberValidator();
+        VaidationResult validate = numberValidator.validate(numbersFromUser);
+        if (!validate.isValid()) {
+            return;
+        }
         CalculateHitResults calculateHitResults = new CalculateHitResults();
+        List<Integer> random = lottoNumberGenerator.generateRandomNumber();
         int hitCounter = calculateHitResults.calculateHitResultsOfUser(random, numbersFromUser);
-        lottoNumberGenerator.drawnNumbers();
-        System.out.println("Number of hits: " + hitCounter);
+        lottoNumberGenerator.drawnNumbers(random);
+        MessageDisplayer messageDisplayer = new MessageDisplayer();
+        messageDisplayer.displayNumberOfHitsMessage(hitCounter);
         CheckWin checkWin = new CheckWin();
         checkWin.extracted(hitCounter);
     }

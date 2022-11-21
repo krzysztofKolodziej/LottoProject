@@ -1,10 +1,10 @@
 package pl.lotto;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CalculateHitResults {
 
-    public int calculateHitResultsOfUser(ArrayList<Integer> random, ArrayList<Integer> numbersFromUser) {
+    public int calculateHitResultsOfUser(List<Integer> random, List<Integer> numbersFromUser) {
         int hitCounter = 0;
 
         for (Integer numberFromUser : numbersFromUser) {
@@ -15,7 +15,6 @@ public class CalculateHitResults {
 
             }
         }
-
         return hitCounter;
     }
 

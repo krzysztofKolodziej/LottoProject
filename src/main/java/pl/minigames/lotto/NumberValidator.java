@@ -1,9 +1,8 @@
-package pl.lotto;
+package pl.minigames.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class NumberValidator {
 
@@ -30,7 +29,7 @@ public class NumberValidator {
 //                throw new RuntimeException("Numbers must be unique. Please try again");
 //                    return new VaidationResult(false);
         }
-        if(errors.size() > 1){
+        if(errors.size() >= 1){
             for(String error: errors){
                 System.out.println(error);
             }

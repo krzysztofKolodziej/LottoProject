@@ -1,4 +1,4 @@
-package pl.lotto;
+package pl.minigames.lotto;
 
 public class CheckWin {
 

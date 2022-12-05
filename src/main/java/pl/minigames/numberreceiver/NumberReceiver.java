@@ -1,4 +1,4 @@
-package pl.lotto;
+package pl.minigames.numberreceiver;
 
 import java.io.BufferedReader;
 import java.io.IOException;

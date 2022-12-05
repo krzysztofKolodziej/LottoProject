@@ -1,15 +1,19 @@
-package pl.lotto;
+package pl.minigames.lotto;
 
 import java.io.IOException;
 import java.util.List;
 
+public class LottoGame {
 
-public class LottoGameApplication {
+    List<Integer> numberosFromUser;
 
-    public static void main(String[] args) throws IOException {
+    public LottoGame(List<Integer> numbersFromUser) {
+        this.numberosFromUser = numbersFromUser;
+    }
+
+    public void play() throws IOException {
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-        NumberReceiver numberReceiver = new NumberReceiver();
-        List<Integer> numbersFromUser = numberReceiver.retrieveNumbersFromUser();
+        List<Integer> numbersFromUser = numberosFromUser;
         NumberValidator numberValidator = new NumberValidator();
         VaidationResult validate = numberValidator.validate(numbersFromUser);
         if (!validate.isValid()) {
@@ -24,8 +28,4 @@ public class LottoGameApplication {
         CheckWin checkWin = new CheckWin();
         checkWin.extracted(hitCounter);
     }
-
-
 }
-
-

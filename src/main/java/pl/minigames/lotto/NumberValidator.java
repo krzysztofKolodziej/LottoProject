@@ -6,9 +6,14 @@ import java.util.stream.Collectors;
 
 public class NumberValidator {
 
-    List<String> errors = new ArrayList<>();
+    private final List<String> errors = new ArrayList<>();
 
     VaidationResult validate(List<Integer> numbersFromUser) {
+        if (numbersFromUser.size() != 6) {
+//            System.out.println("less or more than six numbers");
+            return new VaidationResult(false);
+        }
+
         for (Integer numberOfUser : numbersFromUser) {
             if (numberOfUser <= 0 || numberOfUser > 99) {
 //                System.out.println("The number must be within the range of 1 to 99");
@@ -30,9 +35,9 @@ public class NumberValidator {
 //                    return new VaidationResult(false);
         }
         if(errors.size() >= 1){
-            for(String error: errors){
-                System.out.println(error);
-            }
+//            for(String error: errors){
+//                System.out.println(error);
+//            }
             return new VaidationResult(false);
         }
         return new VaidationResult(true);

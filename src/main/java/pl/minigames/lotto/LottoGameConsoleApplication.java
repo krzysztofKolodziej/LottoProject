@@ -11,7 +11,8 @@ public class LottoGameConsoleApplication {
         NumberReceiver numberReceiver = new NumberReceiver();
         List<Integer> numbersFromUser = numberReceiver.retrieveNumbersFromUser();
         LottoGame lottoGame = new LottoGame(numbersFromUser);
-        lottoGame.play();
+        LottoGameResult play = lottoGame.play();
+        System.out.println(play.getMessage());
     }
 
 

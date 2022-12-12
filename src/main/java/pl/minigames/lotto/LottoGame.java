@@ -11,13 +11,13 @@ public class LottoGame {
         this.numberosFromUser = numbersFromUser;
     }
 
-    public void play() throws IOException {
+    public LottoGameResult play() throws IOException {
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
         List<Integer> numbersFromUser = numberosFromUser;
         NumberValidator numberValidator = new NumberValidator();
         VaidationResult validate = numberValidator.validate(numbersFromUser);
         if (!validate.isValid()) {
-            return;
+            return new LottoGameResult("error");
         }
         CalculateHitResults calculateHitResults = new CalculateHitResults();
         List<Integer> random = lottoNumberGenerator.generateRandomNumber();
@@ -27,5 +27,6 @@ public class LottoGame {
         messageDisplayer.displayNumberOfHitsMessage(hitCounter);
         CheckWin checkWin = new CheckWin();
         checkWin.extracted(hitCounter);
+        return new LottoGameResult("success");
     }
 }

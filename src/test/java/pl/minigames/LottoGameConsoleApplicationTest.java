@@ -45,8 +45,10 @@ public class LottoGameConsoleApplicationTest {
         List<Integer> numbersFromUser = List.of(1, 2, 3, 4, 5, 6, 7);
         LottoGame lottoGame = new LottoGame(numbersFromUser);
         // when
-        lottoGame.play();
+        LottoGameResult result = lottoGame.play();
         // then
+        String message = result.getMessage(); // "success" albo "error"
+        assertThat(message).isEqualTo("less or more than six numbers");
 
     }
 
@@ -57,8 +59,10 @@ public class LottoGameConsoleApplicationTest {
         List<Integer> numbersFromUser = List.of(1, 1, 3, 4, 5, 6);
         LottoGame lottoGame = new LottoGame(numbersFromUser);
         // when
-        lottoGame.play();
+        LottoGameResult result = lottoGame.play();
         // then
+        String message = result.getMessage(); // "success" albo "error"
+        assertThat(message).isEqualTo("Numbers must be unique. Please try again");
     }
 
     @Test

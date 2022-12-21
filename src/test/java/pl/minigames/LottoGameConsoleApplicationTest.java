@@ -67,5 +67,14 @@ public class LottoGameConsoleApplicationTest {
 
     @Test
     public void test_out_of_range_number() throws IOException {
+        // given
+        String[] args = {};
+        List<Integer> numbersFromUser = List.of(1, 2, 3, 4, 5, 1000);
+        LottoGame lottoGame = new LottoGame(numbersFromUser);
+        // when
+        LottoGameResult result = lottoGame.play();
+        // then
+        String message = result.getMessage(); // "success" albo "error"
+        assertThat(message).isEqualTo("1000: The number must be within the range of 1 to 99");
     }
 }

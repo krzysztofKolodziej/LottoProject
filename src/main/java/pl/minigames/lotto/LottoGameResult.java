@@ -4,6 +4,7 @@ public class LottoGameResult {
 
     private final String message;
 
+
     public LottoGameResult(String message) {
         this.message = message;
     }

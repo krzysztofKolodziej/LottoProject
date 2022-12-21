@@ -11,7 +11,7 @@ public class NumberValidator {
     VaidationResult validate(List<Integer> numbersFromUser) {
         if (numbersFromUser.size() != 6) {
 //            System.out.println("less or more than six numbers");
-            return new VaidationResult(false);
+            return new VaidationResult(false, "less or more than six numbers");
         }
 
         for (Integer numberOfUser : numbersFromUser) {
@@ -34,11 +34,18 @@ public class NumberValidator {
 //                throw new RuntimeException("Numbers must be unique. Please try again");
 //                    return new VaidationResult(false);
         }
-        if(errors.size() >= 1){
+        if (errors.size() >= 1) {
 //            for(String error: errors){
 //                System.out.println(error);
 //            }
-            return new VaidationResult(false);
+            String errorsMessage = "";
+            for (String error : errors
+            ) {
+                errorsMessage += error;
+
+            }
+            VaidationResult vaidationResult = new VaidationResult(false, errorsMessage);
+            return vaidationResult;
         }
         return new VaidationResult(true);
     }

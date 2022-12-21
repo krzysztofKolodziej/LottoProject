@@ -15,9 +15,10 @@ public class LottoGame {
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
         List<Integer> numbersFromUser = numberosFromUser;
         NumberValidator numberValidator = new NumberValidator();
-        VaidationResult validate = numberValidator.validate(numbersFromUser);
-        if (!validate.isValid()) {
-            return new LottoGameResult("error");
+        VaidationResult dupa = numberValidator.validate(numbersFromUser);
+        String message = dupa.message;
+        if (!dupa.isValid()) {
+            return new LottoGameResult(message);
         }
         CalculateHitResults calculateHitResults = new CalculateHitResults();
         List<Integer> random = lottoNumberGenerator.generateRandomNumber();

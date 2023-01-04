@@ -19,9 +19,7 @@ public class LottoGameConsoleApplicationTest {
         LottoGameResult result = lottoGame.play();
         // then
         String message = result.getMessage(); // "success" albo "error"
-//        assert message.equals("asdjhasdoijkasdlkjhasdjkn");
         assertThat(message).isEqualTo("success");
-        // jaka wiadomosc wygrales/przegrales/blad
     }
 
     @Test
@@ -33,9 +31,8 @@ public class LottoGameConsoleApplicationTest {
         // when
         LottoGameResult result = lottoGame.play();
         // then
-        String message = result.getMessage(); // "success" albo "error"
+        String message = result.getMessage();
         assertThat(message).isEqualTo("less or more than six numbers");
-        // jaka wiadomosc wygrales/przegrales/blad
     }
 
     @Test
